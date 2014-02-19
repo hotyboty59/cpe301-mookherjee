@@ -16,7 +16,7 @@
  LDI R18, 31; initial value being pushed to the stack that is above 30 but below 250 
  LDI R19, Loop1
  CLR R27
- LOOP: 
+ LOOP: ; This loop simply uses the increment and decrement operations to generate new numbers that get pushed to the stack 
  INC R18
  INC R18
  INC R18
@@ -86,18 +86,18 @@
  L2: POP R18
  MOV R19, R18
  MOV R25, R18 
- SUBLOOP3:
+ SUBLOOP3: // This loop proves divisibility by 3, by using an algorithm based on subtracting. If it is greater than the value 3, keep subtracting, if it is 0, it is divisible, if carry is set, then 
  SUB R19, R17
- BRSH SUBLOOP3
- BRCS SUBLOOP5
+ BRNE SUBLOOP3
+ BRMI SUBLOOP5
  //END LOOP
- ADD R21, R18
+ Addition: ADD R21, R18
  SUBLOOP5:
  SUB R25, R26
- BRSH SUBLOOP5
- BRCS EOL
+ BRNE SUBLOOP5
+ BRMI EOL
  //END LOOP
- ADD R23, R18
+ Addition2: ADD R23, R18
  EOL:
  DEC R27
  BRNE L2
