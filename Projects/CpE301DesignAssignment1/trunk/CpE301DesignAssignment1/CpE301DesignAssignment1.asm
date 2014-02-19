@@ -1,42 +1,106 @@
 /*
  * CpE301DesignAssignment1.asm
  *
- *  Created: 2/19/2014 1:06:01 AM
  *   Author: Ronobir Mookherjee 
  * Description: Simple program to add 20 numbers to a stack, then parse the numbers, applying computer arithmetic alogrithms in the place of available instructions. Must ulitize loops and basic RISC ISA Assembly
  */ 
  .INCLUDE "M328PDEF.INC"; Defines the Memory Map 
  .ORG 0; Beginning Address
- .EQU Loop1 = 6; First loop that pushes 20 numbers to the stack  
+ .EQU Loop1 = 4; First loop that pushes 20 numbers to the stack  
  Main: ; Main Body of progam 
  PartA:; As in the product description, must initialize the memory stack using the end of the available memory locations of the device, and then using the stack pointers SPL and SPH for the low and high set of bits of the address, assigned to one register  
- LDI R16, HIGH(RAMEND) 
- OUT SPH, R16 
+ LDI R16, HIGH(RAMEND) ; initiates the stack started at the end of the available memory location
+ OUT SPH, R16 ; the MCUs special stack register, with the H denoting the High bit of the address
  LDI R16, LOW(RAMEND) 
- OUT SPL, R16
- LDI R20, 31; initial value being pushed to the stack that is above 30 but below 250 
- LDI R21, 2
- LDI R22, 4
- LDI R23, 8 
- LDI R17, Loop1
- LDI R24, 0; checking total number of increments, initializing second counter 
- INC R24
- L1: PUSH R20; Loop initialized with the first value pushed to the stack 
- ADD R20, R21 
- PUSH R20 
- INC R24
- SUB R20, R22
- PUSH R20
- INC R24 
- ADD R20, R23
- INC R24
- DEC R17 
- BRNE L1 ; Based on the previous statement, once the counter, stored in R17 is complete, 19 numbers have been pushed to the stack with one more left. 
- SUB R20, R23
- PUSH R20
- INC R24 ; Making sure that 20 numbers have been pushed, using this second counter 
+ OUT SPL, R16 ; similar to above with the L denoting the low bit 
+ LDI R18, 31; initial value being pushed to the stack that is above 30 but below 250 
+ LDI R19, Loop1
+ CLR R27
+ LOOP: 
+ INC R18
+ INC R18
+ INC R18
+ DEC R18
+ PUSH R18
+ INC R27
+ DEC R18
+ DEC R18
+ INC R18
+ PUSH R18
+ INC R27
+ INC R18
+ INC R18
+ PUSH R18
+ INC R27
+ DEC R18
+ DEC R18
+ DEC R18
+ PUSH R18
+ INC R27
+ INC R18
+ INC R18
+ INC R18
+ INC R18
+ INC R18
+ INC R18
+ INC R18
+ PUSH R18
+ INC R27
+ DEC R19
+ BRNE LOOP
+ /*LDI R21, 2 ; value used to generate new numbers
+ LDI R22, 4 ; above
+ LDI R19, 8 ; above 
+ LDI R17, Loop1 ; Counter used for main loop in random value generation
+ LDI R27, 0; checking total number of increments, initializing second counter 
+ INC R27 ; increments the loop everytime any arithmetic action is performed on register 18, which holds the value being pushed to the stack 
+ L1: PUSH R18; Loop initialized with the first value pushed to the stack 
+ ADD R18, R21 ; Adds 2 to the value in R18, generating a new number
+ PUSH R18 ; pushing the new value to the stack
+ INC R27 ; increments the arithmetic count register that must equal 20 
+ SUB R18, R22 ; subtracts 4 from the value in R18, generating a new value
+ PUSH R18 ; push new value to stack 
+ INC R27 ; above
+ ADD R18, R19 ; adds 8 to R18, generating a new value to be pushed
+ INC R27 ;above
+ DEC R17 ; decrements the main loop stated above. 
+// /*Loop information
+ * The loop was initialized with one of the 20 numbers already created, so the loop can consist of 3 parts, running for 6 iterations, creating 18 new numbers, which is even. The final number is made after the loop finishes, which is below 
+ *///
+// BRNE L1 ; Based on the previous statement, once the counter, stored in R17 is complete, 19 numbers have been pushed to the stack with one more left. 
+ //SUB R18, R19
+ //PUSH R18
+ //INC R27 ; Making sure that 20 numbers have been pushed, using this second counter */
+ 
+ // The second part of the program, designed to parse the stack and find certain criteria, in this case divisibility by a certain quotient. These values must then be placed in a certain register
  PartB: 
-
+ CLR R20 ; Clearing required register
+ CLR R21; Clearing required register, both are used for storing the sum of numbers divisble by 3 in the stack 
+ CLR R23; Cleared and initialized register used to store the sum of numbers divisible by 5 in the stack 
+ CLR R18; clearing register for use
+ CLR R19; for checking 3
+ CLR R25; for checking for 5
+ LDI R17, 3; REGISTER HOLDING 3
+ LDI R26, 5; REGISTER HOLDING 5
+ CLR R22
+ L2: POP R18
+ MOV R19, R18
+ MOV R25, R18 
+ SUBLOOP3:
+ SUB R19, R17
+ BRSH SUBLOOP3
+ BRCS SUBLOOP5
+ //END LOOP
+ ADD R21, R18
+ SUBLOOP5:
+ SUB R25, R26
+ BRSH SUBLOOP5
+ BRCS EOL
+ //END LOOP
+ ADD R23, R18
+ EOL:
+ DEC R27
+ BRNE L2
  EndLoop: ; Main Program end 
  sleep
  nop ; breakpoint
