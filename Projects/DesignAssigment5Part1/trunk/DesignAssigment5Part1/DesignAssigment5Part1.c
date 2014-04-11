@@ -135,8 +135,9 @@ int main(void) //main body calls all other functions to initialize the proper va
 
 	while(ADIF == 0){ //check to see if ADCH and ADCL have been populated before proceeding 
 	};
-	DataADC = ADCH * 2; // is the value of the temperature sensor caputred and stored in the variable
-	TIFR1 = (0<<OCF1A)|(0<<OCF1B); //disables flag to reset intterupt and start again 
+	DataADC = ADCH * 2; // is the value of the temperature sensor captured and stored in the variable
+	USARTSendDataByte(ADCH); // transmitts data. 
+	TIFR1 = (0<<OCF1A)|(0<<OCF1B); //disables flag to reset interrupt and start again 
 	StopADC(); //stops ADC to restart back to main. 
 
 	
