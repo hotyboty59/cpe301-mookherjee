@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>6.1</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
+    <ProjectGuid>{c642bcaf-8d1f-4885-8caf-6890f9b51448}</ProjectGuid>
+    <avrdevice>ATmega328P</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>DA7</AssemblyName>
+    <Name>DA7</Name>
+    <RootNamespace>DA7</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <BootSegment>2</BootSegment>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.11.0" />
+  </dependencies>
+</framework-data>
+    </AsfFrameworkConfig>
+    <avrtool>com.atmel.avrdbg.tool.stk500</avrtool>
+    <com_atmel_avrdbg_tool_stk500>
+      <ToolOptions>
+        <InterfaceProperties>
+          <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
+          <IspClock>125000</IspClock>
+        </InterfaceProperties>
+        <InterfaceName>ISP</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.stk500</ToolType>
+      <ToolNumber>
+      </ToolNumber>
+      <ToolName>STK500</ToolName>
+    </com_atmel_avrdbg_tool_stk500>
+    <avrtoolinterface>ISP</avrtoolinterface>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>NDEBUG</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>DEBUG</Value>
+      <Value>GLCD_DEVICE_AVR8</Value>
+      <Value>GLCD_CONTROLLER_PCD8544</Value>
+      <Value>F_CPU=8000000UL</Value>
+      <Value>GLCD_USE_AVR_DELAY</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+  <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DA7.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Controllers\PCD8544.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Controllers\PCD8544.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Devices\AVR8.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Devices\AVR8.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Fonts\Bebas_Neue18x36_Numbers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Fonts\Bebas_Neue20x36_Bold_Numbers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Fonts\Earthbound_12x19_48to57.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Fonts\font5x7.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Fonts\Liberation_Sans11x14_Numbers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Fonts\Liberation_Sans15x21_Numbers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Fonts\Liberation_Sans17x17_Alpha.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Fonts\Liberation_Sans20x28_Numbers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\Fonts\Liberation_Sans27x36_Numbers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\glcd.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\glcd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\glcd_controllers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\glcd_devices.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\glcd_graphics.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\glcd_graphs.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\glcd_text.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\glcd_text_tiny.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\graphics.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\graphs.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\text.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\text_tiny.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\unit_tests.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\glcd-0.5.2\unit_tests.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\Temp Humidity Sensor\DHT22int.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Library\Temp Humidity Sensor\DHT22int.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Library" />
+    <Folder Include="Library\glcd-0.5.2" />
+    <Folder Include="Library\glcd-0.5.2\Fonts" />
+    <Folder Include="Library\glcd-0.5.2\Devices" />
+    <Folder Include="Library\glcd-0.5.2\Controllers" />
+    <Folder Include="Library\Temp Humidity Sensor" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Library\glcd-0.5.2\.gitignore">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Library\glcd-0.5.2\Doxyfile">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Library\glcd-0.5.2\LICENSE">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Library\glcd-0.5.2\README.md">
+      <SubType>compile</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>
